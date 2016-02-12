@@ -1,0 +1,359 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN">
+<html>
+<head>
+<title>Promethease report</title>
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" >
+<style type="text/css">
+body {
+font-family: arial, helvetica, sans-serif;
+color: black;
+}
+button {
+border: 1px solid #000000;
+padding: 0px;
+font-size: 4px;
+margin-left: 1px;
+}
+button:hover {
+cursor: pointer;
+color: #ffffff;
+}
+#navmenu {
+background-color: #F0F0F0;
+position:fixed;
+right:5px;
+top:5px;
+border:1px solid black;
+z-index:2;
+}
+#navbox {
+border:1px solid black;
+padding-left: 170px;
+float: right;
+clear: none;
+padding: 0px;
+min-width: 50%;
+max-width: 69%;
+}
+#treeDiv1 {
+max-height:300px;
+overflow: auto;
+background-color: #F0F0F0;
+float:left;
+right:5px;
+top:5px;
+border:1px solid black;
+clear: none;
+min-width: 20%;
+max-width: 30%;
+padding: 0px;
+}
+#expandcontractdiv {
+border:1px dotted #dedede;
+background-color:#EBE4F2;
+margin:0 0 .5em 0;
+padding:0.4em;
+}
+.majorsection {
+float:left;
+width:95%;
+border:1px solid black;
+clear:both;
+margin: 5px 0px;
+padding: 0px 10px;
+}
+.sectiontext {
+clear:both;
+font-size: x-large;
+}
+.boxresult {
+width: inherit;
+margin: 10px auto;
+border: 2px solid grey;
+}
+.boxgoodresult {
+width: inherit;
+margin: 10px auto;
+border: 2px solid #80FF90;
+}
+.boxbadresult {
+width: inherit;
+margin: 10px auto;
+border: 2px solid #FF8080;
+}
+.boxresultcol1 {
+background-color: #FFFFFF;
+float: left;
+width: 190px;
+margin: 0;
+word-wrap: break-word;
+}
+.boxresultcol2 {
+margin-left: 190px;
+}
+.boxlink {
+float:left;
+width:130px;
+}
+.boxfreq {
+float:left;
+width:170px;
+clear:both;
+}
+.boxmag {
+float:left;
+width:170px;
+clear:both;
+}
+.boxrep {
+float:left;
+width:170px;
+clear:both;
+}
+.boxeffect {
+float:left;
+}
+.gsboxeffect {
+float:left;
+clear: none;
+}
+.boxshow {
+float:left;
+width:100px;
+}
+.rstext {
+float:left;
+clear: left;
+background-color: #D0D0FF;
+}
+.diseasebutton {
+margin-left: 20px;
+float:left;
+clear: both;
+}
+.member-Topic {
+margin-left: 40px;
+border:1px solid black;
+clear: both;
+}
+.member-is-a-medical-condition {
+margin-left: 40px;
+border:1px solid black;
+clear: both;
+}
+.member-is-a-medicine {
+margin-left: 40px;
+border:1px solid black;
+clear: both;
+}
+.adiseasebox {
+width: 90%;
+float:left;
+margin-left: 40px;
+clear: both;
+}
+.diseaselink {
+margin-left: 240px;
+FONT-SIZE: 18pt;
+}
+.diseaseinfo {
+margin-left: 650px;
+}
+.boxfooter {
+clear: both;
+margin: 0;
+border-top: 1px solid gray;
+}
+.majorboxfooter {
+clear: both;
+margin: 0;
+border-top: 1px solid gray;
+}
+</style>
+
+<script type="text/javascript">
+function toggle(element) {
+if (document.getElementById(element).style.display == "none") {
+   document.getElementById(element).style.display = "";
+} else {
+   document.getElementById(element).style.display = "none";
+}
+}
+function toggle2(element) {
+if (document.getElementById(element).style.display == "none") {
+   document.getElementById(element).style.display = "";
+   document.getElementById('show-'+element).style.display = "none";
+} else {
+   document.getElementById(element).style.display = "none";
+   document.getElementById('show-'+element).style.display = "";
+}
+}
+function toggle3(name) {
+var e=getElementsByClassName(name);
+for ( var i=0; i < e.length; i++ ) {
+   if (e[i].style.display == "none") {
+       e[i].style.display = "";
+       document.getElementById('show-'+e[i].id).style.display = "none";
+   } else {
+       e[i].style.display = "none";
+       document.getElementById('show-'+e[i].id).style.display = "";
+   }
+}
+}
+
+/*
+
+Need to switch to this cleaner method
+Crockford walkTheDOM http://javascript.crockford.com/hackday.ppt
+
+function walkTheDOM(node, func) {
+
+func(node);
+node = node.firstChild;
+while (node) {
+    walkTheDOM(node, func);
+    node = node.nextSibling;
+}
+
+}
+
+
+function getElementsByClassName(className, node) {
+ var results = [];
+ walkTheDOM(node || document.body, function (node) {
+     var a, c = node.className, i;
+     if (c) {
+         a = c.split(' ');
+         for (i = 0; i < a.length; i += 1) {
+             if (a[i] === className) {
+                  results.push(node);
+                  break;
+              }
+         }
+     }
+ });
+ return results;
+}
+
+
+By now there is a more efficient method, but once upon a time this javascript served well enough
+
+    BEGIN:http://www.robertnyman.com
+    http://www.robertnyman.com/2008/05/27/the-ultimate-getelementsbyclassname-anno-2008/
+    cross platform 'getElementsByClassName'
+    Developed by Robert Nyman, http://www.robertnyman.com
+    Code/licensing: http://code.google.com/p/getelementsbyclassname/
+*/
+var getElementsByClassName = function (className, tag, elm){
+    if (document.getElementsByClassName) {
+            getElementsByClassName = function (className, tag, elm) {
+                    elm = elm || document;
+                    var elements = elm.getElementsByClassName(className),
+                            nodeName = (tag)? new RegExp("\b" + tag + "\b", "i") : null,
+                            returnElements = [],
+                            current;
+                    for(var i=0, il=elements.length; i<il; i+=1){
+                            current = elements[i];
+                            if(!nodeName || nodeName.test(current.nodeName)) {
+                                    returnElements.push(current);
+                            }
+                    }
+                    return returnElements;
+            };
+    }
+    else if (document.evaluate) {
+            getElementsByClassName = function (className, tag, elm) {
+                    tag = tag || "*";
+                    elm = elm || document;
+                    var classes = className.split(" "),
+                            classesToCheck = "",
+                            xhtmlNamespace = "http://www.w3.org/1999/xhtml",
+                            namespaceResolver = (document.documentElement.namespaceURI === xhtmlNamespace)? xhtmlNamespace : null,
+                            returnElements = [],
+                            elements,
+                            node;
+                    for(var j=0, jl=classes.length; j<jl; j+=1){
+                            classesToCheck += "[contains(concat(' ', @class, ' '), ' " + classes[j] + " ')]";
+                    }
+                    try     {
+                            elements = document.evaluate(".//" + tag + classesToCheck, elm, namespaceResolver, 0, null);
+                    }
+                    catch (e) {
+                            elements = document.evaluate(".//" + tag + classesToCheck, elm, null, 0, null);
+                    }
+                    while ((node = elements.iterateNext())) {
+                            returnElements.push(node);
+                    }
+                    return returnElements;
+            };
+    }
+    else {
+            getElementsByClassName = function (className, tag, elm) {
+                    tag = tag || "*";
+                    elm = elm || document;
+                    var classes = className.split(" "),
+                            classesToCheck = [],
+                            elements = (tag === "*" && elm.all)? elm.all : elm.getElementsByTagName(tag),
+                            current,
+                            returnElements = [],
+                            match;
+                    for(var k=0, kl=classes.length; k<kl; k+=1){
+                            classesToCheck.push(new RegExp("(^|\s)" + classes[k] + "(\s|$)"));
+                    }
+                    for(var l=0, ll=elements.length; l<ll; l+=1){
+                            current = elements[l];
+                            match = false;
+                            for(var m=0, ml=classesToCheck.length; m<ml; m+=1){
+                                    match = classesToCheck[
+                                        m].test(current.className);
+                                    if (!match) {
+                                            break;
+                                    }
+                            }
+                            if (match) {
+                                    returnElements.push(current);
+                            }
+                    }
+                    return returnElements;
+            };
+    }
+    return getElementsByClassName(className, tag, elm);
+};
+/*      END:http://www.robertnyman.com */
+
+function ShowEverything(){//we open all of them
+
+var sections = new Array('diseasebox',
+                     'member-is-a-Topic',
+                     'member-is-a-medical-condition',
+                     'member-is-a-medicine',
+                     'rstext',
+                     'boxrstext',
+                     'boxshow',
+                     'boxsection'
+                     );
+
+for ( var i_sect=0; i_sect < sections.length; i_sect++ ) {
+    var e=getElementsByClassName(sections[i_sect]);
+    for ( var i=0; i < e.length; i++ ) {
+        e[i].style.display = '';
+    }
+}
+
+}
+</script>
+</head>
+<body><p>
+<a href="../report.html">main page</a><a name='top'></a>
+<div id='header'>
+<h1><a href='http://www.promethease.com'>Promethease</a> Report</h1>
+<h2>Version: 0.1.164</h2>
+<h2>Generated: 2016-01-05 12:04</h2>
+<h3>Infile: genome_test.txt <br>infiles /tmp/tmpcRWXbJ</h3><h3>Reference Population GIH</h3><h3>23818 genotypes annotated</h3></div>
+<div id='navmenu'>
+<h3><a href='http://www.snpedia.com/index.php?title=Promethease/results'>Help</a> interpreting your results.</h3>
+<a href="javascript:ShowEverything()">Show Everything</a>
+</div>
+    <div class="majorsection">     <div class='sectiontext'>This 'tag cloud' tries to highlight notable terms which occur in this report.</div>
+        <div class='boxshow' id="show-tagCloud" style="display: none;"><a href="javascript:toggle2('tagCloud')">...more...</a></div>
+        <div class="boxsection" id="tagCloud" style="display: inline;"><a href="javascript:toggle2('tagCloud')">(hide)</a><span style="font-size:122%">1.2x</span> <span style="font-size:145%">1.3x</span> <span style="font-size:136%">1.4x</span> <span style="font-size:141%">1.5x</span> <span style="font-size:132%">2x</span> <span style="font-size:110%">3x</span> <span style="font-size:117%">7x</span> <span style="font-size:130%">ABCB1</span> <span style="font-size:110%">affects</span> <span style="font-size:106%">after</span> <span style="font-size:142%">age</span> <span style="font-size:104%">Age</span> <span style="font-size:119%">alcohol</span> <span style="font-size:104%">all</span> <span style="font-size:159%">also</span> <span style="font-size:127%">Alzheimer</span> <span style="font-size:106%">among</span> <span style="font-size:104%">anti</span> <span style="font-size:121%">antidepressants</span> <span style="font-size:104%">anxiety</span> <span style="font-size:116%">artery</span> <span style="font-size:112%">arthritis</span> <span style="font-size:117%">Asians</span> <span style="font-size:170%">associated</span> <span style="font-size:108%">association</span> <span style="font-size:116%">Atrial</span> <span style="font-size:105%">autism</span> <span style="font-size:115%">autoimmune</span> <span style="font-size:111%">average</span> <span style="font-size:108%">B</span> <span style="font-size:104%">baldness</span> <span style="font-size:115%">based</span> <span style="font-size:141%">been</span> <span style="font-size:113%">better</span> <span style="font-size:115%">between</span> <span style="font-size:113%">biliary</span> <span style="font-size:104%">bladder</span> <span style="font-size:144%">blood</span> <span style="font-size:121%">body</span> <span style="font-size:104%">both</span> <span style="font-size:134%">brain</span> <span style="font-size:143%">breast</span> <span style="font-size:118%">caffeine</span> <span style="font-size:120%">can</span> <span style="font-size:198%">cancer</span> <span style="font-size:108%">carriers</span> <span style="font-size:106%">Caucasians</span> <span style="font-size:108%">causes</span> <span style="font-size:125%">certain</span> <span style="font-size:135%">cholesterol</span> <span style="font-size:136%">CI</span> <span style="font-size:113%">cirrhosis</span> <span style="font-size:104%">colorectal</span> <span style="font-size:150%">common</span> <span style="font-size:119%">compared</span> <span style="font-size:109%">considered</span> <span style="font-size:137%">copy</span> <span style="font-size:104%">coronary</span> <span style="font-size:124%">Crohn</span> <span style="font-size:117%">degeneration</span> <span style="font-size:173%">developing</span> <span style="font-size:152%">diabetes</span> <span style="font-size:116%">Diabetes</span> <span style="font-size:120%">discussion</span> <span style="font-size:174%">disease</span> <span style="font-size:141%">Disease</span> <span style="font-size:106%">Disorder</span> <span style="font-size:104%">disorder</span> <span style="font-size:108%">DRD2</span> <span style="font-size:122%">drug</span> <span style="font-size:106%">effect</span> <span style="font-size:110%">effective</span> <span style="font-size:127%">European</span> <span style="font-size:112%">Europeans</span> <span style="font-size:116%">Fibrillation</span> <span style="font-size:120%">form</span> <span style="font-size:136%">found</span> <span style="font-size:147%">from</span> <span style="font-size:152%">gene</span> <span style="font-size:130%">genotypes</span> <span style="font-size:105%">get</span> <span style="font-size:105%">glycoprotein</span> <span style="font-size:111%">gout</span> <span style="font-size:113%">gov</span> <span style="font-size:107%">greater</span> <span style="font-size:121%">had</span> <span style="font-size:152%">has</span> <span style="font-size:130%">HDL</span> <span style="font-size:148%">heart</span> <span style="font-size:122%">heterozygous</span> <span style="font-size:107%">high</span> <span style="font-size:200%">higher</span> <span style="font-size:113%">Higher</span> <span style="font-size:118%">homozygous</span> <span style="font-size:109%">hypertension</span> <span style="font-size:122%">increase</span> <span style="font-size:124%">increases</span> <span style="font-size:136%">individuals</span> <span style="font-size:110%">induced</span> <span style="font-size:114%">Japanese</span> <span style="font-size:109%">known</span> <span style="font-size:104%">lactose</span> <span style="font-size:138%">legs</span> <span style="font-size:164%">less</span> <span style="font-size:147%">levels</span> <span style="font-size:104%">light</span> <span style="font-size:108%">linked</span> <span style="font-size:107%">longer</span> <span style="font-size:125%">low</span> <span style="font-size:165%">lower</span> <span style="font-size:111%">Lower</span> <span style="font-size:142%">lung</span> <span style="font-size:117%">macular</span> <span style="font-size:122%">makes</span> <span style="font-size:115%">Male</span> <span style="font-size:112%">metabolism</span> <span style="font-size:110%">metabolizer</span> <span style="font-size:105%">mg</span> <span style="font-size:174%">more</span> <span style="font-size:134%">most</span> <span style="font-size:109%">MTHFR</span> <span style="font-size:111%">much</span> <span style="font-size:121%">multiple</span> <span style="font-size:117%">mutation</span> <span style="font-size:105%">NAT2</span> <span style="font-size:113%">ncbi</span> <span style="font-size:113%">nih</span> <span style="font-size:113%">nlm</span> <span style="font-size:110%">no</span> <span style="font-size:121%">non</span> <span style="font-size:149%">not</span> <span style="font-size:113%">obesity</span> <span style="font-size:145%">odds</span> <span style="font-size:148%">one</span> <span style="font-size:118%">One</span> <span style="font-size:112%">only</span> <span style="font-size:108%">onset</span> <span style="font-size:148%">other</span> <span style="font-size:129%">p</span> <span style="font-size:120%">P</span> <span style="font-size:135%">Parkinson</span> <span style="font-size:155%">patients</span> <span style="font-size:162%">people</span> <span style="font-size:107%">plasma</span> <span style="font-size:122%">polymorphism</span> <span style="font-size:105%">polymorphisms</span> <span style="font-size:128%">population</span> <span style="font-size:132%">populations</span> <span style="font-size:113%">possible</span> <span style="font-size:112%">primary</span> <span style="font-size:133%">prostate</span> <span style="font-size:104%">protein</span> <span style="font-size:116%">rare</span> <span style="font-size:115%">ratio</span> <span style="font-size:150%">reduced</span> <span style="font-size:105%">Reduced</span> <span style="font-size:108%">reduces</span> <span style="font-size:105%">reduction</span> <span style="font-size:130%">related</span> <span style="font-size:132%">reported</span> <span style="font-size:112%">reports</span> <span style="font-size:105%">research</span> <span style="font-size:122%">respond</span> <span style="font-size:134%">response</span> <span style="font-size:137%">restless</span> <span style="font-size:109%">rheumatoid</span> <span style="font-size:176%">s</span> <span style="font-size:122%">schizophrenia</span> <span style="font-size:118%">sclerosis</span> <span style="font-size:106%">seems</span> <span style="font-size:107%">several</span> <span style="font-size:125%">significantly</span> <span style="font-size:160%">slightly</span> <span style="font-size:151%">Slightly</span> <span style="font-size:106%">so</span> <span style="font-size:118%">some</span> <span style="font-size:131%">somewhat</span> <span style="font-size:109%">stroke</span> <span style="font-size:127%">studies</span> <span style="font-size:140%">study</span> <span style="font-size:113%">subjects</span> <span style="font-size:120%">such</span> <span style="font-size:150%">syndrome</span> <span style="font-size:109%">taste</span> <span style="font-size:106%">testicular</span> <span style="font-size:117%">their</span> <span style="font-size:134%">those</span> <span style="font-size:109%">treatment</span> <span style="font-size:123%">two</span> <span style="font-size:145%">type</span> <span style="font-size:134%">Type</span> <span style="font-size:137%">variant</span> <span style="font-size:112%">variants</span> <span style="font-size:138%">version</span> <span style="font-size:104%">vs</span> <span style="font-size:141%">was</span> <span style="font-size:122%">when</span> <span style="font-size:108%">white</span> <span style="font-size:115%">women</span> <span style="font-size:120%">years</span></div>     <div class="majorboxfooter"></div>     </div><p><br/></p></body></html>

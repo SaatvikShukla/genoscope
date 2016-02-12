@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<promethease>
+<!-- For more information visit http://www.snpedia.com/index.php/Promethease/xml -->
+    <run>
+      <infile>/tmp/tmpcRWXbJ</infile>
+
+      <ethnicity>GIH</ethnicity>
+      <outfile>
+        ondemand-scratch/dc3f17b66-2dc9-4ce0-97ad-6d72e6984027/report.html
+      </outfile>
+    </run>
+
+</promethease>
