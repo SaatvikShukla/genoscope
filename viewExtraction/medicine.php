@@ -104,7 +104,6 @@ clear: none;
 float:left;
 margin-left: 5px;
 margin-top: 10px;
-width:100px;
 }
 .rstext {
 float:left;
@@ -333,21 +332,17 @@ for ( var i_sect=0; i_sect < sections.length; i_sect++ ) {
 
         // Extract the div as a substring
 		$start = (strrpos($filename, 'majorsection') - 12);
-		$end = (strrpos($filename, 'boxfooter') + 42);
+		$end = (strrpos($filename, 'boxfooter') - 17);
 	    $extract = substr($filename, $start, ($end - $start));
         $start = null; $end = null; // null-ify vars
 
         // Remove the inline medicine div tag
         $extract = str_replace("<div class='sectiontext'>Medicines</div>", "", $extract);
-        //$extract = str_replace("<p><br/></p></html>", "", $extract);
-
-
-        // Remove the first (hide) button
-        //$hideButtonStart = ((stripos($extract, ">(hide)<")) - 45);
-        //$hideButtonEnd = ((stripos($extract, ">(hide)<")) + 11);
-        //$targetStr = substr($extract,$hideButtonStart,($hideButtonStart-$hideButtonEnd));
-
-        //echo str_replace($targetStr, "", $extract);
+        $extract = str_replace("...more...", "Click to see details..", $extract);
+        $extract = str_replace("(hide)</a>", "(hide)</a>&nbsp;&nbsp;&nbsp;", $extract);
 
         echo $extract;
 ?>
+<script type="text/javascript">
+    toggle2('is-a-medicine');
+</script>
