@@ -1,0 +1,157 @@
+<style type="text/css">
+button {
+border: 1px solid #000000;
+padding: 0px;
+font-size: 4px;
+margin-left: 1px;
+}
+button:hover {
+cursor: pointer;
+color: #ffffff;
+}
+#navbox {
+border:1px solid black;
+padding-left: 170px;
+float: right;
+clear: none;
+padding: 0px;
+min-width: 50%;
+max-width: 69%;
+}
+#treeDiv1 {
+max-height:300px;
+overflow: auto;
+background-color: #F0F0F0;
+float:left;
+right:5px;
+top:5px;
+border:1px solid black;
+clear: none;
+min-width: 20%;
+max-width: 30%;
+padding: 0px;
+}
+#expandcontractdiv {
+border:1px dotted #dedede;
+background-color:#EBE4F2;
+margin:0 0 .5em 0;
+padding:0.4em;
+}
+.majorsection {
+float:left;
+width:100%;
+clear:both;
+margin: 5px 0px;
+padding: 0px 10px;
+}
+.sectiontext {
+clear:both;
+font-size: x-large;
+}
+.boxresult {
+width: inherit;
+border: 1px solid grey;
+}
+.boxgoodresult {
+width: inherit;
+margin: 5px auto;
+border: 2px solid #0aff22;
+}
+.boxbadresult {
+width: inherit;
+margin: 5px auto;
+border: 2px solid #ff3232;
+}
+.boxresultcol1 {
+background-color: #FFFFFF;
+float: left;
+width: inherit;
+margin: 5px auto;
+margin-left: 10px;
+word-wrap: break-word;
+}
+.boxresultcol2 {
+margin-left: 20px;
+}
+.boxlink {
+float:left;
+width:130px;
+}
+.boxfreq {
+float:left;
+width:170px;
+clear:both;
+}
+.boxmag {
+float:left;
+width:170px;
+clear:both;
+}
+.boxrep {
+float:left;
+width:170px;
+clear:both;
+}
+.boxeffect {
+float:left;
+padding: 5px;
+}
+.gsboxeffect {
+float:left;
+clear: none;
+}
+.boxshow {
+float:left;
+margin-left: 5px;
+margin-top: 10px;
+}
+.rstext {
+float:left;
+clear: left;
+background-color: #D0D0FF;
+}
+.diseasebutton {
+margin-left: 20px;
+margin-top: 10px;
+float:left;
+clear: both;
+}
+.member-Topic {
+margin-left: 30px;
+border:1px solid black;
+clear: both;
+}
+.member-is-a-medical-condition {
+margin-left: 20px;
+border:1px solid black;
+clear: both;
+}
+.member-is-a-medicine {
+margin-left: 20px;
+border:1px solid black;
+clear: both;
+}
+.adiseasebox {
+width: 100%;
+float:left;
+margin-left: 0px;
+clear: both;
+}
+.diseaselink {
+margin-left: 140px;
+FONT-SIZE: 18pt;
+}
+.diseaseinfo {
+float :right;
+}
+.boxfooter {
+clear: both;
+margin: 0;
+border-top: 1px solid gray;
+}
+.majorboxfooter {
+clear: both;
+margin: 0;
+border-top: 1px solid gray;
+}
+</style>

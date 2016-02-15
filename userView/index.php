@@ -43,11 +43,14 @@
     <!--
     <link rel="canonical" href="http://www.example.com/">
     -->
-
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
+    <script src="../src/js/pace.min.js"></script>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:regular,bold,italic,thin,light,bolditalic,black,medium&amp;lang=en">
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
     <link rel="stylesheet" href="https://code.getmdl.io/1.1.1/material.cyan-light_blue.min.css">
     <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="../src/css/reportWrapper.css">
+    <link rel="stylesheet" type="text/css" href="../src/css/pace.flashTheme.css">
   </head>
   <body>
     <div class="userView mdl-layout mdl-js-layout mdl-layout--fixed-drawer mdl-layout--fixed-header">
@@ -93,14 +96,7 @@
         </header>
         <nav class="userView-navigation mdl-navigation mdl-color--blue-grey-800">
           <a class="mdl-navigation__link" href=""><i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">home</i>Home</a>
-          <a class="mdl-navigation__link" href=""><i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">inbox</i>Inbox</a>
-          <a class="mdl-navigation__link" href=""><i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">delete</i>Trash</a>
-          <a class="mdl-navigation__link" href=""><i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">report</i>Spam</a>
-          <a class="mdl-navigation__link" href=""><i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">forum</i>Forums</a>
-          <a class="mdl-navigation__link" href=""><i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">flag</i>Updates</a>
-          <a class="mdl-navigation__link" href=""><i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">local_offer</i>Promos</a>
-          <a class="mdl-navigation__link" href=""><i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">shopping_cart</i>Purchases</a>
-          <a class="mdl-navigation__link" href=""><i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">people</i>Social</a>
+            <a class="mdl-navigation__link" href=""><i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">S</i>Settings</a>
           <div class="mdl-layout-spacer"></div>
           <a class="mdl-navigation__link" href=""><i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">help_outline</i><span class="visuallyhidden">Help</span></a>
         </nav>
@@ -110,7 +106,7 @@
           <section class="section--center mdl-grid mdl-grid--no-spacing mdl-shadow--2dp mdl-cell mdl-cell--12-col mdl-grid">
                  <div class="mdl-card mdl-cell mdl-cell--12-col">
                   <div class="mdl-card__supporting-text">
-                   <h4>Tag Cloud</h4>
+                   <h4>Word Cloud</h4>
                     <?php 
                         require_once('../viewExtraction/tagCloud.php'); 
                     ?>
@@ -123,6 +119,16 @@
                    <h4>Medicine</h4>
                     <?php 
                         require_once('../viewExtraction/medicine.php'); 
+                    ?>
+                  </div>
+                </div>
+          </section>
+          <section class="section--center mdl-grid mdl-grid--no-spacing mdl-shadow--2dp mdl-cell mdl-cell--12-col mdl-grid">
+                 <div class="mdl-card mdl-cell mdl-cell--12-col">
+                  <div class="mdl-card__supporting-text">
+                   <h4>Medical Conditions</h4>
+                    <?php 
+                        require_once('../viewExtraction/medicalCondition.php'); 
                     ?>
                   </div>
                 </div>
@@ -253,7 +259,7 @@
           </g>
         </defs>
       </svg>
-      <?php include 'http://www.saatvikshukla.com/genoscope/tagCloud.php'; ?>
     <script src="https://code.getmdl.io/1.1.1/material.min.js"></script>
+    <script src="../src/js/reportWrapper.js"></script>
   </body>
 </html>
